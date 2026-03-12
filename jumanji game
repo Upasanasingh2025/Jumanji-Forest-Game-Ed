@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Jumanji Forest Riddles</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:linear-gradient(#0b3d0b,#1b5e20);
+color:white;
+padding:40px;
+}
+
+#board{
+background:#3e2723;
+padding:30px;
+border-radius:15px;
+width:65%;
+margin:auto;
+box-shadow:0px 0px 20px black;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:8px;
+background:#ffcc00;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffa000;
+}
+
+#dice{
+font-size:70px;
+margin:20px;
+}
+
+#tiger{
+font-size:60px;
+display:none;
+animation:jump 1s infinite alternate;
+}
+
+@keyframes jump{
+from{transform:translateY(0px);}
+to{transform:translateY(-20px);}
+}
+
+input{
+padding:10px;
+font-size:16px;
+margin-top:10px;
+}
+
+#riddle{
+font-style:italic;
+font-size:18px;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🌿 JUMANJI FOREST RIDDLE QUEST 🌿</h1>
+
+<div id="board">
+
+<div id="dice">🎲</div>
+
+<div id="tiger">🐅</div>
+
+<button onclick="rollDice()">Roll Jungle Dice</button>
+
+<p id="riddle"></p>
+
+<input id="answer" placeholder="Type your answer">
+
+<br>
+
+<button onclick="checkAnswer()">Submit</button>
+
+<p id="result"></p>
+
+<p>Score: <span id="score">0</span></p>
+
+</div>
+
+<audio id="drum">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8b6f1df0a2.mp3">
+</audio>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2021/09/06/audio_8a1a7e9d32.mp3">
+</audio>
+
+<script>
+
+let currentAnswer="";
+let score=0;
+
+const riddles={
+1:[
+`In forests deep where life runs free,
+Many plants and creatures you will see.
+Different forms living side by side,
+What is this richness nature cannot hide?`,
+"biodiversity"],
+
+2:[
+`I am the home where animals stay,
+Where birds and beasts live every day.
+Jungle, river, grass or tree,
+What is this place called in ecology?`,
+"habitat"],
+
+3:[
+`Axes swing and forests fall,
+Trees disappear, both big and tall.
+Humans cut them more each year,
+What is this loss we sadly fear?`,
+"deforestation"],
+
+4:[
+`Protect the forests, guard the land,
+Save the wildlife hand in hand.
+Careful use is the golden key,
+What is this act of responsibility?`,
+"conservation"],
+
+5:[
+`Sharp teeth ready, eyes that scan,
+Hunting quietly is my plan.
+In the forest food chain play,
+What do we call hunters of prey?`,
+"predator"],
+
+6:[
+`Running fast to stay alive,
+Escaping hunters to survive.
+In food chains I play my role,
+What is the name for animals they control?`,
+"prey"]
+};
+
+function rollDice(){
+
+document.getElementById("drum").play();
+
+document.getElementById("tiger").style.display="block";
+
+let dice=Math.floor(Math.random()*6)+1;
+
+document.getElementById("dice").innerHTML=dice;
+
+document.getElementById("riddle").innerHTML=riddles[dice][0];
+
+currentAnswer=riddles[dice][1];
+
+}
+
+function checkAnswer(){
+
+let user=document.getElementById("answer").value.toLowerCase();
+
+if(user===currentAnswer){
+
+document.getElementById("result").innerHTML="🌿 Correct! The jungle accepts your wisdom.";
+
+score++;
+
+document.getElementById("score").innerHTML=score;
+
+}
+
+else{
+
+document.getElementById("result").innerHTML="❌ The forest whispers: Try again...";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
